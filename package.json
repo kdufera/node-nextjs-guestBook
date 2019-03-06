@@ -1,10 +1,17 @@
 {
-  "name": "nextgram",
+  "name": "sampleForm",
   "private": true,
   "dependencies": {
-    "next": "^2.0.0-beta",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
+    "collections": "^5.1.8",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "next": "^2.4.9",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "reactstrap": "^7.1.0"
   },
   "devDependencies": {
     "babel-eslint": "7.0.0",
@@ -14,7 +21,7 @@
     "parser": "babel-eslint"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "node ./server/server.js",
     "build": "next build",
     "start": "NODE_ENV=production next start",
     "lint": "standard"

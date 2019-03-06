@@ -1,98 +1,44 @@
-import React from 'react'
+import React, { Component } from 'react';
 import Router from 'next/router'
+import axios from 'axios';
+import Home from './home';
+import Head from 'next/head'
 
-import Modal from '../components/modal'
 
-export default class extends React.Component {
-  static getInitialProps () {
-    return {
-      photos: new Array(15).fill(0).map((v, k) => k + 1)
-    }
+
+
+
+import { Button } from 'reactstrap';
+
+
+ class Index extends Component {
+  constructor(props) {
+    super(props);
   }
 
-  constructor (props) {
-    super(props)
-    this.onKeyDown = this.onKeyDown.bind(this)
-  }
-
-  // handling escape close
-  componentDidMount () {
-    document.addEventListener('keydown', this.onKeyDown)
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('keydown', this.onKeyDown)
-  }
-
-  onKeyDown (e) {
-    if (!this.props.url.query.photoId) return
-    if (e.keyCode === 27) {
-      this.props.url.back()
-    }
-  }
-
-  dismissModal () {
-    Router.push('/')
-  }
-
-  showPhoto (e, id) {
-    e.preventDefault()
-    Router.push(`/?photoId=${id}`, `/photo?id=${id}`)
-  }
-
-  render () {
-    const { url, photos } = this.props
-
+  render() {
     return (
-      <div className='list'>
-        {
-          url.query.photoId &&
-            <Modal
-              id={url.query.photoId}
-              onDismiss={() => this.dismissModal()}
-            />
+   <div className="container">
+      <Home/>
+
+      <style type="text/css">
+        {`
+        .container {
+          text-align:center;
+          padding-left:15%;
+          padding-right:15%;
         }
-        {
-          photos.map((id) => (
-            <div key={id} className='photo'>
-              <a
-                className='photoLink'
-                href={`/photo?id=${id}`}
-                onClick={(e) => this.showPhoto(e, id)}
-              >
-                {id}
-              </a>
-            </div>
-          ))
-        }
-        <style jsx>{`
-          .list {
-            padding: 50px;
-            text-align: center;
-          }
+        label {
+          display: inline-block;
+      }
 
-          .photo {
-            display: inline-block;
-          }
+        `}
+    </style>
+ </div>
 
-          .photoLink {
-            color: #333;
-            verticalAlign: middle;
-            cursor: pointer;
-            background: #eee;
-            display: inline-block;
-            width: 250px;
-            height: 250px;
-            line-height: 250px;
-            margin: 10px;
-            border: 2px solid transparent;
-          }
-
-          .photoLink:hover {
-            borderColor: blue;
-          }
-        `}</style>
-      </div>
-    )
-  }
+      );
+    }
 }
+
+export default Index;
+
